@@ -378,7 +378,7 @@ dotnet add package TUnit --prerelease
 ```
 
 BenchmarkDotNet v0.15.5, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
-AMD EPYC 7763 2.45GHz, 1 CPU, 4 logical and 2 physical cores
+AMD EPYC 7763 3.24GHz, 1 CPU, 4 logical and 2 physical cores
 .NET SDK 10.0.100-rc.2.25502.107
   [Host]     : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
   Job-GVKUBM : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
@@ -388,79 +388,13 @@ Runtime=.NET 10.0
 ```
 | Method       | Version | Mean    | Error    | StdDev   | Median  |
 |------------- |-------- |--------:|---------:|---------:|--------:|
-| Build_TUnit  | 0.87.8  | 1.822 s | 0.0356 s | 0.0475 s | 1.830 s |
-| Build_NUnit  | 4.4.0   | 1.601 s | 0.0158 s | 0.0147 s | 1.604 s |
-| Build_MSTest | 4.0.1   | 1.674 s | 0.0238 s | 0.0223 s | 1.678 s |
-| Build_xUnit3 | 3.1.0   | 1.558 s | 0.0282 s | 0.0263 s | 1.565 s |
+| Build_TUnit  | 0.87.8  | 1.778 s | 0.0308 s | 0.0273 s | 1.767 s |
+| Build_NUnit  | 4.4.0   | 1.555 s | 0.0179 s | 0.0158 s | 1.556 s |
+| Build_MSTest | 4.0.1   | 1.638 s | 0.0166 s | 0.0147 s | 1.637 s |
+| Build_xUnit3 | 3.1.0   | 1.584 s | 0.0177 s | 0.0165 s | 1.577 s |
 
 
 ### Scenario: Tests running asynchronous operations and async/await patterns
-
-```
-
-BenchmarkDotNet v0.15.5, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
-AMD EPYC 7763 2.85GHz, 1 CPU, 4 logical and 2 physical cores
-.NET SDK 10.0.100-rc.2.25502.107
-  [Host]     : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-  Job-GVKUBM : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-
-Runtime=.NET 10.0  
-
-```
-| Method    | Version | Mean     | Error    | StdDev   | Median   |
-|---------- |-------- |---------:|---------:|---------:|---------:|
-| TUnit     | 0.87.8  | 549.7 ms |  4.02 ms |  3.76 ms | 549.1 ms |
-| NUnit     | 4.4.0   | 700.2 ms | 12.79 ms | 11.96 ms | 703.2 ms |
-| MSTest    | 4.0.1   | 666.1 ms | 13.04 ms | 14.50 ms | 664.6 ms |
-| xUnit3    | 3.1.0   | 647.8 ms |  3.55 ms |  3.32 ms | 647.5 ms |
-| TUnit_AOT | 0.87.8  | 173.9 ms |  0.24 ms |  0.21 ms | 173.9 ms |
-
-
-### Scenario: Parameterized tests with multiple test cases using data attributes
-
-```
-
-BenchmarkDotNet v0.15.5, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
-AMD EPYC 7763 2.65GHz, 1 CPU, 4 logical and 2 physical cores
-.NET SDK 10.0.100-rc.2.25502.107
-  [Host]     : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-  Job-GVKUBM : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-
-Runtime=.NET 10.0  
-
-```
-| Method    | Version | Mean      | Error     | StdDev    | Median    |
-|---------- |-------- |----------:|----------:|----------:|----------:|
-| TUnit     | 0.87.8  | 509.81 ms |  3.579 ms |  3.348 ms | 509.49 ms |
-| NUnit     | 4.4.0   | 532.48 ms | 10.462 ms | 13.966 ms | 531.44 ms |
-| MSTest    | 4.0.1   | 490.24 ms |  8.329 ms |  7.383 ms | 487.96 ms |
-| xUnit3    | 3.1.0   | 496.47 ms |  2.430 ms |  2.154 ms | 496.97 ms |
-| TUnit_AOT | 0.87.8  |  73.16 ms |  0.234 ms |  0.208 ms |  73.18 ms |
-
-
-### Scenario: Tests executing massively parallel workloads with CPU-bound, I/O-bound, and mixed operations
-
-```
-
-BenchmarkDotNet v0.15.5, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
-AMD EPYC 7763 2.61GHz, 1 CPU, 4 logical and 2 physical cores
-.NET SDK 10.0.100-rc.2.25502.107
-  [Host]     : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-  Job-GVKUBM : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-
-Runtime=.NET 10.0  
-
-```
-| Method    | Version | Mean       | Error    | StdDev   | Median     |
-|---------- |-------- |-----------:|---------:|---------:|-----------:|
-| TUnit     | 0.87.8  |   707.1 ms | 14.00 ms | 14.38 ms |   708.8 ms |
-| NUnit     | 4.4.0   | 1,167.1 ms |  6.85 ms |  6.07 ms | 1,165.4 ms |
-| MSTest    | 4.0.1   | 2,946.4 ms |  9.06 ms |  8.03 ms | 2,944.9 ms |
-| xUnit3    | 3.1.0   | 2,970.7 ms |  3.73 ms |  3.49 ms | 2,970.9 ms |
-| TUnit_AOT | 0.87.8  |   279.3 ms |  0.68 ms |  0.63 ms |   279.3 ms |
-
-
-### Scenario: Tests with complex parameter combinations creating 25-125 test variations
 
 ```
 
@@ -473,13 +407,79 @@ AMD EPYC 7763 2.45GHz, 1 CPU, 4 logical and 2 physical cores
 Runtime=.NET 10.0  
 
 ```
+| Method    | Version | Mean     | Error   | StdDev  | Median   |
+|---------- |-------- |---------:|--------:|--------:|---------:|
+| TUnit     | 0.87.8  | 540.0 ms | 6.58 ms | 6.15 ms | 538.3 ms |
+| NUnit     | 4.4.0   | 654.9 ms | 7.10 ms | 6.65 ms | 654.3 ms |
+| MSTest    | 4.0.1   | 622.0 ms | 6.95 ms | 5.80 ms | 622.3 ms |
+| xUnit3    | 3.1.0   | 633.2 ms | 4.23 ms | 3.95 ms | 633.3 ms |
+| TUnit_AOT | 0.87.8  | 173.4 ms | 0.52 ms | 0.49 ms | 173.4 ms |
+
+
+### Scenario: Parameterized tests with multiple test cases using data attributes
+
+```
+
+BenchmarkDotNet v0.15.5, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
+AMD EPYC 7763 2.45GHz, 1 CPU, 4 logical and 2 physical cores
+.NET SDK 10.0.100-rc.2.25502.107
+  [Host]     : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+  Job-GVKUBM : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+
+Runtime=.NET 10.0  
+
+```
+| Method    | Version | Mean      | Error    | StdDev   | Median    |
+|---------- |-------- |----------:|---------:|---------:|----------:|
+| TUnit     | 0.87.8  | 511.62 ms | 6.139 ms | 5.442 ms | 510.18 ms |
+| NUnit     | 4.4.0   | 531.30 ms | 8.389 ms | 7.437 ms | 532.28 ms |
+| MSTest    | 4.0.1   | 481.16 ms | 9.253 ms | 9.087 ms | 479.52 ms |
+| xUnit3    | 3.1.0   | 496.25 ms | 3.689 ms | 3.271 ms | 496.91 ms |
+| TUnit_AOT | 0.87.8  |  74.47 ms | 0.479 ms | 0.448 ms |  74.33 ms |
+
+
+### Scenario: Tests executing massively parallel workloads with CPU-bound, I/O-bound, and mixed operations
+
+```
+
+BenchmarkDotNet v0.15.5, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
+AMD EPYC 7763 2.45GHz, 1 CPU, 4 logical and 2 physical cores
+.NET SDK 10.0.100-rc.2.25502.107
+  [Host]     : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+  Job-GVKUBM : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+
+Runtime=.NET 10.0  
+
+```
+| Method    | Version | Mean       | Error    | StdDev   | Median     |
+|---------- |-------- |-----------:|---------:|---------:|-----------:|
+| TUnit     | 0.87.8  |   700.0 ms | 13.38 ms | 13.15 ms |   703.1 ms |
+| NUnit     | 4.4.0   | 1,164.1 ms |  7.82 ms |  6.93 ms | 1,163.3 ms |
+| MSTest    | 4.0.1   | 2,949.3 ms | 15.03 ms | 14.06 ms | 2,942.2 ms |
+| xUnit3    | 3.1.0   | 2,960.7 ms |  4.31 ms |  3.82 ms | 2,959.9 ms |
+| TUnit_AOT | 0.87.8  |   279.5 ms |  0.80 ms |  0.67 ms |   279.5 ms |
+
+
+### Scenario: Tests with complex parameter combinations creating 25-125 test variations
+
+```
+
+BenchmarkDotNet v0.15.5, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
+AMD EPYC 7763 2.70GHz, 1 CPU, 4 logical and 2 physical cores
+.NET SDK 10.0.100-rc.2.25502.107
+  [Host]     : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+  Job-GVKUBM : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+
+Runtime=.NET 10.0  
+
+```
 | Method    | Version | Mean       | Error    | StdDev  | Median     |
 |---------- |-------- |-----------:|---------:|--------:|-----------:|
-| TUnit     | 0.87.8  |   612.9 ms |  3.64 ms | 3.40 ms |   612.7 ms |
-| NUnit     | 4.4.0   | 1,565.7 ms | 10.62 ms | 9.94 ms | 1,565.6 ms |
-| MSTest    | 4.0.1   | 1,509.5 ms |  8.15 ms | 6.36 ms | 1,509.7 ms |
-| xUnit3    | 3.1.0   | 1,504.8 ms |  3.22 ms | 2.69 ms | 1,504.6 ms |
-| TUnit_AOT | 0.87.8  |   176.1 ms |  3.39 ms | 4.52 ms |   177.3 ms |
+| TUnit     | 0.87.8  |   620.0 ms |  7.08 ms | 6.63 ms |   619.7 ms |
+| NUnit     | 4.4.0   | 1,535.4 ms | 11.26 ms | 9.40 ms | 1,535.1 ms |
+| MSTest    | 4.0.1   | 1,498.1 ms |  7.91 ms | 7.01 ms | 1,499.6 ms |
+| xUnit3    | 3.1.0   | 1,526.2 ms |  3.76 ms | 3.52 ms | 1,525.7 ms |
+| TUnit_AOT | 0.87.8  |   178.9 ms |  1.14 ms | 1.06 ms |   178.7 ms |
 
 
 ### Scenario: Large-scale parameterized tests with 100+ test cases testing framework scalability
@@ -497,11 +497,11 @@ Runtime=.NET 10.0
 ```
 | Method    | Version | Mean      | Error     | StdDev    | Median    |
 |---------- |-------- |----------:|----------:|----------:|----------:|
-| TUnit     | 0.87.8  | 538.27 ms |  7.198 ms |  6.380 ms | 536.62 ms |
-| NUnit     | 4.4.0   | 592.37 ms |  9.704 ms |  8.602 ms | 591.35 ms |
-| MSTest    | 4.0.1   | 584.29 ms | 11.621 ms | 18.092 ms | 584.28 ms |
-| xUnit3    | 3.1.0   | 510.10 ms |  5.432 ms |  5.081 ms | 509.73 ms |
-| TUnit_AOT | 0.87.8  |  81.90 ms |  0.402 ms |  0.376 ms |  81.84 ms |
+| TUnit     | 0.87.8  | 527.05 ms |  5.126 ms |  4.544 ms | 525.33 ms |
+| NUnit     | 4.4.0   | 575.51 ms | 10.209 ms | 10.027 ms | 576.66 ms |
+| MSTest    | 4.0.1   | 501.00 ms |  9.865 ms |  9.689 ms | 500.01 ms |
+| xUnit3    | 3.1.0   | 506.22 ms |  3.928 ms |  3.675 ms | 506.41 ms |
+| TUnit_AOT | 0.87.8  |  81.10 ms |  0.192 ms |  0.160 ms |  81.05 ms |
 
 
 
